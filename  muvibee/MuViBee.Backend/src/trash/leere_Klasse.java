@@ -7,7 +7,6 @@ public class leere_Klasse {
 		//hallo yassir
 		//asf,asfklsdf
 		//djkhsjsdjkhsdfjksdhfjkdhfjksdfhfj
-		//neuer test
 	}
 
 }
