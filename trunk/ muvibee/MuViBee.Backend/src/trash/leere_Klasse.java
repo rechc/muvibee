@@ -6,8 +6,7 @@ public class leere_Klasse {
 		// TODO Auto-generated constructor stub
 		//hallo yassir
 		//asf,asfklsdf
-		//Neuer Test
-		//djkhsjsdjkhsdfjksdhfjkdhfjksdfhfj klfjsdfklsdjfkl
+		//neuer test
 	}
 
 }
