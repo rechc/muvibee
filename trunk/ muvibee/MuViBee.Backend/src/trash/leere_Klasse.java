@@ -7,6 +7,7 @@ public class leere_Klasse {
 		//hallo yassir qweS
 		//asf,asfklsdf
 		//neuer test
+		// LUKE: Wieso kann ich keine Klasse erstellen
 	}
 
 }
