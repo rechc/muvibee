@@ -9,9 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 
-public class IconInterface extends JFrame{
+public class ListView extends JFrame{
 
-	public IconInterface() {
+	public ListView() {
 		super("List View");
 
         // ContentPane setzen:
@@ -33,7 +33,6 @@ public class IconInterface extends JFrame{
         
         scroller.add(addItem("Cover","Author","Titel"));
         content.add(scroller);
-        
 	}
 	
 	private JPanel addItem(String coverStr, String authorStr, String titleStr){

@@ -10,10 +10,16 @@ public class IconList {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		IconInterface ii = new IconInterface();
-		ii.pack();
-		IconList.centerWindow(ii);
-		ii.setVisible(true);
+		ListView lv = new ListView();
+		lv.pack();
+		IconList.centerWindow(lv);
+		lv.setVisible(true);
+		
+		TreeView tv = new TreeView();
+		tv.pack();
+		IconList.centerWindow(tv);
+		tv.setLocation(400, 180);
+		tv.setVisible(true);
 	}
 
 	// Fenster aud Bildschirmmitte zentrieren
