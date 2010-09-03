@@ -37,6 +37,12 @@ public class IconInterface extends JFrame{
 	}
 	
 	private JPanel addItem(String coverStr, String authorStr, String titleStr){
+		// -----------------
+		// |       | Author |
+		// | Cover |________|
+		// |       | Titel  |
+		// |_______|________|
+		
 		JPanel panel = new JPanel(new GridLayout(1,2));
 		JLabel coverLbl = new JLabel(coverStr);
 		
