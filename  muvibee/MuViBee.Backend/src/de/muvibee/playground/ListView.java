@@ -2,6 +2,8 @@ package de.muvibee.playground;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JFrame;
@@ -15,8 +17,10 @@ public class ListView extends JFrame{
 		super("List View");
 
         // ContentPane setzen:
-        JPanel content = new JPanel(new GridLayout(1,1));
+        JPanel content = new JPanel(new GridBagLayout());
         this.setContentPane(content);
+        
+        GridBagConstraints c = new GridBagConstraints();
 
         // Groesse des Fensterbereichs setzen:
         content.setPreferredSize(new Dimension(250, 650));
@@ -27,12 +31,18 @@ public class ListView extends JFrame{
         // Programm beenden, wenn das Fenster geschlossen wird:
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-//        JPanel listPanel = new JPanel(new GridLayout(1,1));
         JScrollBar scroller = new JScrollBar();
         scroller.setOrientation(JScrollBar.VERTICAL);
+        scroller.setPreferredSize(new Dimension(15,600));
+
+        scroller.add(addItem("Cover1","Author1","Titel1"));
+        scroller.add(addItem("Cover2","Author2","Titel2"));
         
-        scroller.add(addItem("Cover","Author","Titel"));
-        content.add(scroller);
+        c.fill = GridBagConstraints.NONE;
+        c.gridx = 3;
+        c.gridy = 0;
+        content.add(scroller, c);
+        content.add(addItem("Cover3","Author3","Titel3"),c); //nur zum Test hinzugefuegt
 	}
 	
 	private JPanel addItem(String coverStr, String authorStr, String titleStr){
@@ -42,16 +52,16 @@ public class ListView extends JFrame{
 		// |       | Titel  |
 		// |_______|________|
 		
-		JPanel panel = new JPanel(new GridLayout(1,2));
+		JPanel panel = new JPanel(new GridLayout(1,2,-45,0));
 		JLabel coverLbl = new JLabel(coverStr);
 		
-		JPanel author_title = new JPanel(new GridLayout(2,1));
+		JPanel author_title = new JPanel(new GridLayout(2,1,0,-195));
 		JLabel authorLbl = new JLabel(authorStr);
 		JLabel titleLbl = new JLabel(titleStr);
 		author_title.add(authorLbl);
 		author_title.add(titleLbl);
 
-//		panel.setPreferredSize(new Dimension(150, 250));
+		panel.setPreferredSize(new Dimension(150, 250));
 		panel.add(coverLbl);
 		panel.add(author_title);
 		
