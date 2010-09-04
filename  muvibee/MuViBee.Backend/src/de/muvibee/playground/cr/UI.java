@@ -7,7 +7,6 @@ import java.awt.GridBagLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import de.muvibee.playground.CompleteList;
 
 public class UI extends JFrame{
 	ListView listView;
@@ -31,7 +30,6 @@ public class UI extends JFrame{
 
         // Programm beenden, wenn das Fenster geschlossen wird:
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       		 
 	}
 	
 	private void addItem(String cover, String author, String title) {
@@ -41,8 +39,8 @@ public class UI extends JFrame{
 	public static void main(String[] args) {
 		UI ui = new UI();
 		ui.addItem("Cover1","Author1","Titel1");
-		ui.addItem("Cover1","Author1","Titel1");
-		ui.addItem("Cover1","Author1","Titel1");
+		ui.addItem("Cover2","Author2","Titel2");
+		ui.addItem("Cover3","Author3","Titel3");
 		ui.pack();
 		ui.setLocationRelativeTo(null);
 		ui.setVisible(true);

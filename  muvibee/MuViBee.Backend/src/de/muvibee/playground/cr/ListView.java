@@ -1,5 +1,6 @@
 package de.muvibee.playground.cr;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -15,16 +16,21 @@ public class ListView extends JPanel{
 	JList  list;
 	
 	public ListView() {
+			setLayout(new BorderLayout());
+		
  	        list = new JList();
  	        list.setVisibleRowCount(10);
  	        
-	        JScrollPane scroller = new JScrollPane(list);
-	        scroller.setPreferredSize(new Dimension(150,600));
+	        JScrollPane pane = new JScrollPane(list);
+	        pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+			pane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+	        pane.setPreferredSize(new Dimension(150,600));
+	        pane.getViewport().setBackground(Color.BLUE);
 //			IconCellRenderer icr = new IconCellRenderer();
 //			icr.setPreferredSize(new Dimension(50, 70));
 //			list.setCellRenderer(icr);		
-	        
-	        add(scroller);
+	        pane.add(new JLabel("asdsdasd"));
+	        add(pane, BorderLayout.NORTH);
 	}
 	
 	public void listAdd(String cover, String author, String title){
