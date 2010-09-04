@@ -8,8 +8,10 @@ import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 
 public class ListView extends JFrame{
 
@@ -31,18 +33,30 @@ public class ListView extends JFrame{
         // Programm beenden, wenn das Fenster geschlossen wird:
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        JScrollBar scroller = new JScrollBar();
-        scroller.setOrientation(JScrollBar.VERTICAL);
-        scroller.setPreferredSize(new Dimension(15,600));
-
-        scroller.add(addItem("Cover1","Author1","Titel1"));
-        scroller.add(addItem("Cover2","Author2","Titel2"));
+        
+        JList list = new JList();
+		IconCellRenderer icr = new IconCellRenderer();
+		icr.setPreferredSize(new Dimension(50, 70));
+		list.setCellRenderer(icr);
+        list.setVisibleRowCount(6);
+        list.add(addItem("Cover1","Author1","Titel1"));
+        list.add(addItem("Cover1","Author1","Titel1"));
+        list.add(addItem("Cover1","Author1","Titel1"));
+        list.add(new JLabel("asd"));
+        
+        JScrollPane scroller = new JScrollPane(list);
+//      scroller.setOrientation(JScrollBar.VERTICAL);
+        scroller.getVerticalScrollBar().setUnitIncrement(10);
+        scroller.setPreferredSize(new Dimension(150,600));
+        
+//        scroller.add(list);
+//        scroller.add(addItem("Cover2","Author2","Titel2"));
         
         c.fill = GridBagConstraints.NONE;
         c.gridx = 3;
         c.gridy = 0;
         content.add(scroller, c);
-        content.add(addItem("Cover3","Author3","Titel3"),c); //nur zum Test hinzugefuegt
+//        content.add(addItem("Cover3","Author3","Titel3"),c); //nur zum Test hinzugefuegt
 	}
 	
 	private JPanel addItem(String coverStr, String authorStr, String titleStr){
