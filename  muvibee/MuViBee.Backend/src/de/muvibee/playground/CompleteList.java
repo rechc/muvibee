@@ -1,10 +1,9 @@
 package de.muvibee.playground;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
+@SuppressWarnings("serial")
 public class CompleteList extends JFrame {
 	
 	

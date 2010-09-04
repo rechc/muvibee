@@ -6,25 +6,22 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
-import javax.swing.ImageIcon;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListCellRenderer;
-import javax.swing.JList;
+import javax.swing.ListSelectionModel;
 
 
+@SuppressWarnings("serial")
 public class IconListSimple extends JPanel {
 
-	protected static Entry[] items = {
-		new Entry("The Big Lebowsky", "1.jpg"), 
-		null, 
-		null, null, null, null
-	};//new Entry[20];
+	
+	static JList list;
+	static DefaultListModel dlm;
 	
 	protected static int itemCounter = 0;
 	
@@ -32,39 +29,57 @@ public class IconListSimple extends JPanel {
 		
 //		setPreferredSize(new Dimension(300, 200));
 		setLayout(new BorderLayout());
-		JList list = new JList(items);
+		dlm = new DefaultListModel();
+//	    dlm.clear();
+	    
+//	    dlm.addElement(new Entry("The Big Lebowsky", "1.jpg"));
+	   	list = new JList();
+	   	list.setModel(dlm);
+	   	list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+	   	
 		IconCellRenderer icr = new IconCellRenderer();
 		icr.setPreferredSize(new Dimension(50, 70));
 		list.setCellRenderer(icr);		
-		list.setVisibleRowCount(6);	
+		list.setVisibleRowCount(3);
 		
+		
+		//button
 		JButton addButton = new JButton("Add Entry");
 		addButton.setSize(12, 24);
 		addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                addItem("Icon number two", "3.jpg");
+                addItem("Icon number two", "3.jpg", dlm);
             }
         });
 		this.add(addButton, BorderLayout.SOUTH);
 		
+		//scroll pane
 		JScrollPane pane = new JScrollPane(list);
+		pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		pane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		pane.setPreferredSize(new Dimension(450, 250));
-		this.add(pane, BorderLayout.NORTH);		
+		this.add(pane, BorderLayout.NORTH);
 	}
 	
-	protected static void addItem(String name, String icon ) {
-		for (int i = 0; i < items.length; i++) {
-			if (i <= itemCounter)
-				continue;
-			items[i] = new Entry(name, icon);
-			itemCounter++;
-			System.out.println("Geaddet.");
-			break;
-		}
+	protected static void addItem(String name, String icon, DefaultListModel dlm) {
+		
+		int index = list.getSelectedIndex(); //get selected index
+	    if (index == -1) { //no selection, so insert at beginning
+	        index = 0;
+	    } else {           //add after the selected item
+	        index++;
+	    }
+
+		dlm.insertElementAt(new Entry(name, icon), index);
+		list.ensureIndexIsVisible(index);
+		itemCounter++;
+		System.out.println("Geaddet." + "\t" + itemCounter);
+		
 	}	
 }
 
 /////////////////////////////////////////////////////////////////////////
+@SuppressWarnings("serial")
 class IconCellRenderer extends JLabel implements ListCellRenderer {
 	
 	private static final Color HIGHLIGHT_COLOR = new Color(0, 0, 128);
