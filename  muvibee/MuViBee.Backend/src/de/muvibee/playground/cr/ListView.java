@@ -5,20 +5,25 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListCellRenderer;
+import javax.swing.ListSelectionModel;
 
 
 public class ListView extends JPanel{
-	JList  list;
+	DefaultListModel  listModel;
 	
 	public ListView() {
 			setLayout(new BorderLayout());
 		
- 	        list = new JList();
+			listModel = new DefaultListModel();
+ 	        JList list = new JList(listModel);
+ 	        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+ 	        list.setLayoutOrientation(JList.VERTICAL);
  	        list.setVisibleRowCount(10);
  	        
 	        JScrollPane pane = new JScrollPane(list);
@@ -29,12 +34,11 @@ public class ListView extends JPanel{
 //			IconCellRenderer icr = new IconCellRenderer();
 //			icr.setPreferredSize(new Dimension(50, 70));
 //			list.setCellRenderer(icr);		
-	        pane.add(new JLabel("asdsdasd"));
 	        add(pane, BorderLayout.NORTH);
 	}
 	
 	public void listAdd(String cover, String author, String title){
-		list.add(new Entry(cover,author,title));
+		listModel.addElement(new Entry(cover,author,title));
 	}
 }
 

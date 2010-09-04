@@ -5,6 +5,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
@@ -19,7 +20,7 @@ public class UI extends JFrame{
 		listView = new ListView();;
 		JPanel content = listView;
 		this.setContentPane(content);
-		
+
 		GridBagConstraints c = new GridBagConstraints();
 		
         // Groesse des Fensterbereichs setzen:
