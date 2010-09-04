@@ -25,7 +25,7 @@ public class ListView extends JFrame{
         // Groesse des Fensterbereichs setzen:
         content.setPreferredSize(new Dimension(250, 650));
 
-        // Icon setzen:		// getClass().getResource() sucht die Resource (hier ftp.gif im Unterverzeichnis icons) relativ zum Pfad der Class
+        // Icon setzen:		// getClass().getResource() sucht die Resource (hier muvibee.gif im Unterverzeichnis icons) relativ zum Pfad der Class
 //        this.setIconImage(new ImageIcon(getClass().getResource(".\\icons\\muvibee.gif")).getImage());
 
         // Programm beenden, wenn das Fenster geschlossen wird:
