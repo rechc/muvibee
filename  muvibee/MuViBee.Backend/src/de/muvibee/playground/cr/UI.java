@@ -3,7 +3,10 @@ package de.muvibee.playground.cr;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,6 +23,19 @@ public class UI extends JFrame{
 		listView = new ListView();;
 		JPanel content = listView;
 		this.setContentPane(content);
+		
+		//button
+		JButton addButton = new JButton("Add Entry");
+		addButton.setSize(12, 24);
+		addButton.addActionListener(new ActionListener() {
+			int i = 1;
+			public void actionPerformed(ActionEvent e) {
+				addItem(i  + ".jpg","Author" + i,"Titel" + i);
+				i++;
+            }
+        });
+		
+		content.add(addButton);
 
 		GridBagConstraints c = new GridBagConstraints();
 		
@@ -39,9 +55,6 @@ public class UI extends JFrame{
 	
 	public static void main(String[] args) {
 		UI ui = new UI();
-		ui.addItem("Cover1","Author1","Titel1");
-		ui.addItem("Cover2","Author2","Titel2");
-		ui.addItem("Cover3","Author3","Titel3");
 		ui.pack();
 		ui.setLocationRelativeTo(null);
 		ui.setVisible(true);

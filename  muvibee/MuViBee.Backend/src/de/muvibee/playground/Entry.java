@@ -30,8 +30,6 @@ public class Entry {
 	public ImageIcon getImage(JList list) {
 		if (image == null) {
 			image = resizeIcon(list, 70, 70, imagePath);
-//			image = new ImageIcon(imagePath);
-			
 		}
 		return image;
 	}
