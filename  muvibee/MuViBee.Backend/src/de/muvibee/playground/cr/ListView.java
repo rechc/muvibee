@@ -49,7 +49,6 @@ public class ListView extends JPanel{
 	}
 	
 	public void listAdd(String cover, String author, String title){
-
 		lcr = new CellRenderer(new Entry_old(cover, author, title));
 		listModel.addElement(lcr);
 		list.setCellRenderer(lcr);

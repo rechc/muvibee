@@ -33,7 +33,7 @@ public class CellRenderer extends JPanel implements ListCellRenderer {
 	    
 	    public CellRenderer(JPanel entry) {
 			super();
-			setLayout(new GridLayout());
+			setLayout(new BorderLayout());
 			add(entry);
 			setOpaque(true);
 			setPreferredSize(new Dimension(150,70));
