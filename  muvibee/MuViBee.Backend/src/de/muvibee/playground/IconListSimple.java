@@ -6,7 +6,10 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -14,6 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 
 
 @SuppressWarnings("serial")
@@ -35,12 +40,16 @@ public class IconListSimple extends JPanel {
 //	    dlm.addElement(new Entry("The Big Lebowsky", "1.jpg"));
 	   	list = new JList();
 	   	list.setModel(dlm);
+	   	list.setLayoutOrientation(JList.HORIZONTAL_WRAP);
 	   	list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	   	
+//	   	list.setFixedCellHeight(80);
+//	   	list.setFixedCellWidth(80);
+	   	
 		IconCellRenderer icr = new IconCellRenderer();
-		icr.setPreferredSize(new Dimension(50, 70));
+		icr.setPreferredSize(new Dimension(80, 70));
 		list.setCellRenderer(icr);		
-		list.setVisibleRowCount(3);
+		list.setVisibleRowCount(-1);
 		
 		
 		//button
@@ -48,7 +57,7 @@ public class IconListSimple extends JPanel {
 		addButton.setSize(12, 24);
 		addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                addItem("Icon number two", "3.jpg", dlm);
+                addItem("5.jpg", dlm);
             }
         });
 		this.add(addButton, BorderLayout.SOUTH);
@@ -61,7 +70,7 @@ public class IconListSimple extends JPanel {
 		this.add(pane, BorderLayout.NORTH);
 	}
 	
-	protected static void addItem(String name, String icon, DefaultListModel dlm) {
+	protected static void addItem(String icon, DefaultListModel dlm) {
 		
 		int index = list.getSelectedIndex(); //get selected index
 	    if (index == -1) { //no selection, so insert at beginning
@@ -70,7 +79,10 @@ public class IconListSimple extends JPanel {
 	        index++;
 	    }
 
-		dlm.insertElementAt(new Entry(name, icon), index);
+	    IconEntry cover = new IconEntry(icon);
+	    cover.setBorder(BorderFactory.createCompoundBorder(
+	    		BorderFactory.createRaisedBevelBorder(), BorderFactory.createLoweredBevelBorder()));
+		dlm.insertElementAt(cover, index);
 		list.ensureIndexIsVisible(index);
 		itemCounter++;
 		System.out.println("Geaddet." + "\t" + itemCounter);
@@ -86,7 +98,8 @@ class IconCellRenderer extends JLabel implements ListCellRenderer {
 	
     public IconCellRenderer() {
         setOpaque(true);
-        setIconTextGap(12);
+//        setIconTextGap(12);
+        
     }
     public Component getListCellRendererComponent(
         JList list,
@@ -96,9 +109,9 @@ class IconCellRenderer extends JLabel implements ListCellRenderer {
         boolean cellHasFocus)
     {
         	
-    	Entry entry = (Entry) value;
+    	IconEntry entry = (IconEntry) value;
     	if (!(IconListSimple.itemCounter == 0) && (entry != null)) {
-    		setText(entry.getTitle());
+//    		setText(entry.getTitle());
     		setIcon(entry.getImage(list));
     	}
         if (isSelected) {
