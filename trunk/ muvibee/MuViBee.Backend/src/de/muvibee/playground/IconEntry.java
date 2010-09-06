@@ -10,26 +10,23 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JList;
 
-public class Entry {
+@SuppressWarnings("serial")
+public class IconEntry extends JLabel {
 
-	private final String title;
 	private final String imagePath;
 	private ImageIcon image;
 
-	public Entry(String name, String imagePath) {
-		this.title = name;
+	public IconEntry(String imagePath) {
 		this.imagePath = "resources/icons/" + imagePath;
-	}
-
-	public String getTitle() {
-		return title;
 	}
 
 	public ImageIcon getImage(JList list) {
 		if (image == null) {
-			image = resizeIcon(list, 70, 70, imagePath);
+//			image = new ImageIcon(imagePath);
+			image = resizeIcon(list, 50, 50, imagePath);
 		}
 		return image;
 	}
@@ -41,7 +38,7 @@ public class Entry {
 			AffineTransform trans = AffineTransform.getScaleInstance(
 					(double)width/src.getWidth(), (double)height/src.getHeight());
 			Graphics2D g = (Graphics2D) list.getGraphics();
-//			g.drawRenderedImage(src, trans);
+			g.drawRenderedImage(src, trans);
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			GraphicsDevice gd = ge.getDefaultScreenDevice();
 			GraphicsConfiguration cg = gd.getDefaultConfiguration();
@@ -59,9 +56,5 @@ public class Entry {
 			e.printStackTrace();
 		}
 		return result;		
-	}
-	
-	public String toString() {
-		return title;
 	}
 }
