@@ -48,19 +48,19 @@ public class CellRenderer extends JPanel implements ListCellRenderer {
 	    										boolean hasFocus)
 	    {
 
-		    if (value instanceof Entry) {
-		      Entry entry = (Entry)value;
-		      ImageIcon icon = (ImageIcon)iconTable.get(value);
-		      if (icon == null) {
-//		        icon = new ImageIcon(entry.getImage());
-		        icon = (entry.getImage(list));
-		        add(new JLabel(entry.getTitle()));
-		        iconTable.put(value, icon);
-		      }
-		      
-		    } else {
+//		    if (value instanceof Entry) {
+//		      Entry entry = (Entry)value;
+//		      ImageIcon icon = (ImageIcon)iconTable.get(value);
+//		      if (icon == null) {
+////		        icon = new ImageIcon(entry.getImage());
+//		        icon = (entry.getImage(list));
+//		        add(new JLabel(entry.getTitle()));
+//		        iconTable.put(value, icon);
+//		      }
+//		      
+//		    } else {
 //		      label.setIcon(null); 
-		    }
+//		    }
 		    
 //		    panel.setBackground((Color)value);
 		    
