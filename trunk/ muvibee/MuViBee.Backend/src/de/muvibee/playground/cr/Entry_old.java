@@ -29,7 +29,7 @@ public class Entry_old extends JPanel{
 		// |       | Titel  |
 		// |_______|________|
 		
-		setLayout(new GridLayout(1,2, 0,0));
+		setLayout(new GridLayout(1,2, -40,0));
 		setPreferredSize(new Dimension(10, 80));
 		
 		imagePath = "resources/icons/" + cover;
@@ -38,7 +38,7 @@ public class Entry_old extends JPanel{
 		label.setIcon(resizeIcon(70, 70, imagePath));
 		add(label);
 		
-		JPanel author_title = new JPanel(new GridLayout(2,1,0,0));
+		JPanel author_title = new JPanel(new GridLayout(2,1,0,-20));
 		JLabel authorLbl = new JLabel(author);
 		JLabel titleLbl = new JLabel(title);
 		author_title.add(authorLbl);
