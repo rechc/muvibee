@@ -14,10 +14,7 @@ public class CompleteList extends JFrame {
 		this.setIconImage(new ImageIcon("resources/icons/5.jpg").getImage());
 
 		//Add IconList	
-//		content.add(list.initialize(), BorderLayout.WEST);		
 		this.setContentPane(new IconListSimple());
-		
-		
 	}
 
 	public static void main(String[] args) {
