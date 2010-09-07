@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ResourceBundle;
 
 import javax.xml.stream.FactoryConfigurationError;
 import javax.xml.stream.XMLInputFactory;
@@ -20,6 +21,8 @@ import de.muvibee.media.Video;
 
 public class EAN {
 
+	ResourceBundle bundle = ResourceBundle.getBundle("MuViBee");
+	
 	private long ean;
 	private InputStream inputStream;
 	
@@ -48,7 +51,7 @@ public class EAN {
         try {
         	result = Long.parseLong(inData);
         } catch (NumberFormatException fehler) {
-            System.out.println("Falsches EAN Format");
+            System.out.println(bundle.getString("FALSE_EAN_FORMAT"));
             return -1;
         }
         return result;
@@ -62,7 +65,7 @@ public class EAN {
 				+ "&ItemId=" + ean
 				+ "&ResponseGroup=ItemAttributes,Images" 
 				+ "&SearchIndex=Blended"
-				+ "&IdType=EAN,ISBN");
+				+ "&IdType=EAN");
 
 		URLConnection conn = url.openConnection();
 		conn.connect();
@@ -146,14 +149,18 @@ public class EAN {
 		if (error == null) {
 			if (productGroup.equals("DVD") || productGroup.equals("Video")) {
 				Video.createVideo(title, theatricalReleaseDate, cover);
+				System.out.println(bundle.getString("EAN_FOUND"));
 			} else if (productGroup.equals("Music")) {
 				Music.createMusic(title, artist, artist, theatricalReleaseDate, numberOfPagesOrDisc, cover);
+				System.out.println(bundle.getString("EAN_FOUND"));
 			} else if (productGroup.equals("Book")) {
 				Book.createBook(title, author, publisher, language, theatricalReleaseDate, isbn, numberOfPagesOrDisc, cover);
+				System.out.println(bundle.getString("EAN_FOUND"));
+			} else {
+				System.out.println(bundle.getString("FALSE_EAN_MEDIA"));
 			}
-			System.out.println("Die EAN trifft nicht zu");
 		} else {
-			System.out.println(error);
+			System.out.println(bundle.getString("FALSE_EAN"));
 		}
 	}
 }
