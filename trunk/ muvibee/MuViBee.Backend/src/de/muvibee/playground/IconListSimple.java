@@ -24,6 +24,7 @@ public class IconListSimple extends JPanel {
 	
 	static JList list;
 	static DefaultListModel dlm;
+	int iconCounter = 1;
 	
 	protected static int itemCounter = 0;
 	
@@ -45,10 +46,16 @@ public class IconListSimple extends JPanel {
 		
 		
 		//button
-		JButton addButton = new JButton("Add Entry");
+		JButton addButton = new JButton("Add Entry");		
 		addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                addItem("5.jpg", dlm);
+                if (iconCounter <= 7) {
+            	addItem(iconCounter + ".jpg", dlm);
+                iconCounter++;
+                }
+                else {
+                	addItem("1.jpg", dlm);
+                }
             }
         });
 		this.add(addButton, BorderLayout.SOUTH);
