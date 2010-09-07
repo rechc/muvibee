@@ -101,6 +101,7 @@ class IconCellRenderer extends JLabel implements ListCellRenderer {
         		BorderFactory.createLineBorder(Color.WHITE, 5), compound);
         this.setBorder(gap);
     }
+    
     public Component getListCellRendererComponent(
         JList list,
         Object value,
@@ -119,7 +120,7 @@ class IconCellRenderer extends JLabel implements ListCellRenderer {
           setBackground(Color.white);
           setForeground(Color.black);
         }
-    	
+
         return this;
     }
 }
