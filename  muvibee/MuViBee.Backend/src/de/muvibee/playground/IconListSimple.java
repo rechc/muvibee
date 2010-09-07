@@ -47,14 +47,14 @@ public class IconListSimple extends JPanel {
 //	   	list.setFixedCellWidth(80);
 	   	
 		IconCellRenderer icr = new IconCellRenderer();
-		icr.setPreferredSize(new Dimension(80, 70));
+		icr.setPreferredSize(new Dimension(100, 120));
 		list.setCellRenderer(icr);		
 		list.setVisibleRowCount(-1);
 		
 		
 		//button
 		JButton addButton = new JButton("Add Entry");
-		addButton.setSize(12, 24);
+//		addButton.setSize(12, 24);
 		addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 addItem("5.jpg", dlm);
@@ -66,7 +66,7 @@ public class IconListSimple extends JPanel {
 		JScrollPane pane = new JScrollPane(list);
 		pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		pane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		pane.setPreferredSize(new Dimension(450, 250));
+		pane.setPreferredSize(new Dimension(350, 550));
 		this.add(pane, BorderLayout.NORTH);
 	}
 	
@@ -80,8 +80,7 @@ public class IconListSimple extends JPanel {
 	    }
 
 	    IconEntry cover = new IconEntry(icon);
-	    cover.setBorder(BorderFactory.createCompoundBorder(
-	    		BorderFactory.createRaisedBevelBorder(), BorderFactory.createLoweredBevelBorder()));
+	    
 		dlm.insertElementAt(cover, index);
 		list.ensureIndexIsVisible(index);
 		itemCounter++;
@@ -98,8 +97,13 @@ class IconCellRenderer extends JLabel implements ListCellRenderer {
 	
     public IconCellRenderer() {
         setOpaque(true);
-//        setIconTextGap(12);
-        
+        Border compound = BorderFactory.createCompoundBorder(
+        		BorderFactory.createRaisedBevelBorder(), BorderFactory.createLoweredBevelBorder());
+        Border gap = BorderFactory.createCompoundBorder(
+        		BorderFactory.createLineBorder(Color.WHITE, 5), compound);
+//	    		BorderFactory.createRaisedBevelBorder()); //BorderFactory.createLoweredBevelBorder(), 
+	    		
+        this.setBorder(gap);
     }
     public Component getListCellRendererComponent(
         JList list,
@@ -111,7 +115,6 @@ class IconCellRenderer extends JLabel implements ListCellRenderer {
         	
     	IconEntry entry = (IconEntry) value;
     	if (!(IconListSimple.itemCounter == 0) && (entry != null)) {
-//    		setText(entry.getTitle());
     		setIcon(entry.getImage(list));
     	}
         if (isSelected) {
