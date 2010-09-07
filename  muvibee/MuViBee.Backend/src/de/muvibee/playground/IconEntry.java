@@ -25,7 +25,7 @@ public class IconEntry extends JLabel {
 
 	public ImageIcon getImage(JList list) {
 		if (image == null) {
-			image = resizeIcon(list, 100, 120, imagePath);
+			image = resizeIcon(list, 90, 100, imagePath);
 		}
 		return image;
 	}
