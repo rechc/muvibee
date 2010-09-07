@@ -15,6 +15,7 @@ public class DBConnector {
 	 * @throws SQLException
 	 * @throws MySQLException
 	 */
+
 	public static Connection getConnection() throws SQLException {
         try {
 			Class.forName("org.hsqldb.jdbcDriver").newInstance();
