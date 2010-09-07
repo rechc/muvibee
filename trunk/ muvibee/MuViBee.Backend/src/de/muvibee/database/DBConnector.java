@@ -25,6 +25,6 @@ public class DBConnector {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		return DriverManager.getConnection("jdbc:hsqldb:file:./data/database", "SA", "");
+		return DriverManager.getConnection("jdbc:hsqldb:file:./data/database/muvibee", "SA", "");
 	}
 }
