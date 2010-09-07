@@ -5,8 +5,8 @@ import java.sql.SQLException;
 
 public class DBTest {
 	final static String SQL0 = "CREATE TABLE test (spalte INT NOT NULL)";
-	final static String SQL1 = "CREATE TABLE IF NOT EXISTS `infos` (`ID` int(10) NOT NULL AUTO_INCREMENT,`mediaID` int(10) DEFAULT NULL,`k_infoID` int(10) DEFAULT NULL,`value` text COLLATE latin1_german2_ci, PRIMARY KEY (`ID`)) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci AUTO_INCREMENT=1 ;";
-	final static String SQL2 = "CREATE TABLE IF NOT EXISTS `k_format` (`ID` int(10) NOT NULL AUTO_INCREMENT,`mediaID` int(10) DEFAULT NULL,`stxt` varchar(255) COLLATE latin1_german2_ci DEFAULT NULL,`ltxt` text COLLATE latin1_german2_ci,PRIMARY KEY (`ID`)) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci AUTO_INCREMENT=1";
+	final static String SQL1 = "CREATE TABLE infos (ID INT NOT NULL IDENTITY, mediaID INT DEFAULT NULL, k_infoID INT DEFAULT NULL, value LONGVARCHAR)";
+	final static String SQL2 = "CREATE TABLE k_format (ID INT NOT NULL IDENTITY, mediaID INT, stxt  varchar(255) DEFAULT NULL, ltxt LONGVARCHAR)";
 	final static String SQL3 = "CREATE TABLE IF NOT EXISTS `k_genre` (`ID` int(10) NOT NULL AUTO_INCREMENT,`stxt` varchar(255) COLLATE latin1_german2_ci DEFAULT NULL,`ltxt` text COLLATE latin1_german2_ci,PRIMARY KEY (`ID`)) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci AUTO_INCREMENT=1";
 	final static String SQL4 = "CREATE TABLE IF NOT EXISTS `k_infos` (`ID` int(10) NOT NULL AUTO_INCREMENT,`infosID` int(10) DEFAULT NULL,`name` varchar(45) COLLATE latin1_german2_ci DEFAULT NULL,PRIMARY KEY (`ID`)) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci AUTO_INCREMENT=1";
 	final static String SQL5 = "CREATE TABLE IF NOT EXISTS `lend` (`ID` int(10) NOT NULL AUTO_INCREMENT,`mediaID` int(10) DEFAULT NULL,`lendDate` date DEFAULT NULL,`backDate` date DEFAULT NULL,`lendTo` varchar(255) COLLATE latin1_german2_ci DEFAULT NULL,PRIMARY KEY (`ID`)) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci AUTO_INCREMENT=1";
