@@ -6,9 +6,9 @@ import java.sql.SQLException;
 public class DBTest {
 	final static String SQL0 = "CREATE TABLE test (spalte INT NOT NULL)";
 	final static String SQL1 = "CREATE TABLE infos (ID INT NOT NULL IDENTITY, mediaID INT DEFAULT NULL, k_infoID INT DEFAULT NULL, value LONGVARCHAR)";
-	final static String SQL2 = "CREATE TABLE k_format (ID INT NOT NULL IDENTITY, mediaID INT, stxt  varchar(255) DEFAULT NULL, ltxt LONGVARCHAR)";
-	final static String SQL3 = "CREATE TABLE IF NOT EXISTS `k_genre` (`ID` int(10) NOT NULL AUTO_INCREMENT,`stxt` varchar(255) COLLATE latin1_german2_ci DEFAULT NULL,`ltxt` text COLLATE latin1_german2_ci,PRIMARY KEY (`ID`)) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci AUTO_INCREMENT=1";
-	final static String SQL4 = "CREATE TABLE IF NOT EXISTS `k_infos` (`ID` int(10) NOT NULL AUTO_INCREMENT,`infosID` int(10) DEFAULT NULL,`name` varchar(45) COLLATE latin1_german2_ci DEFAULT NULL,PRIMARY KEY (`ID`)) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci AUTO_INCREMENT=1";
+	final static String SQL2 = "CREATE TABLE k_format (ID INT NOT NULL IDENTITY, mediaID INT DEFAULT NULL, stxt  VARCHAR(255) DEFAULT NULL, ltxt LONGVARCHAR)";
+	final static String SQL3 = "CREATE TABLE k_genre (ID INT NOT NULL IDENTITY, stxt VARCHAR(255) DEFAULT NULL, ltxt LONGVARCHAR)";
+	final static String SQL4 = "CREATE TABLE  k_infos (ID INT NOT NULL IDENTITY, infosID INT DEFAULT NULL, name VARCHAR(255) DEFAULT NULL)";
 	final static String SQL5 = "CREATE TABLE lend (ID INT IDENTITY, mediaID INT NULL,lendDate date NULL,backDate date NULL,lendTo VARCHAR(255) NULL)";
 	final static String SQL6 = "CREATE TABLE media (ID int IDENTITY, infosID INT NOT NULL, k_genreID INT NULL, lendID INT NULL, k_formatID INT NULL, title VARCHAR(255) NOT NULL,description LONGVARCHAR(1023), cover VARCHAR(255) NULL, rating INT NULL, comment VARCHAR(255) NULL, location VARCHAR(255) NULL, ean INT NULL, year INT NULL, genreID INT NULL, isDeleted BOOLEAN NOT NULL)";
 
