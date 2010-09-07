@@ -6,10 +6,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -18,7 +16,6 @@ import javax.swing.JScrollPane;
 import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
 
 
 @SuppressWarnings("serial")
@@ -31,20 +28,15 @@ public class IconListSimple extends JPanel {
 	protected static int itemCounter = 0;
 	
 	public IconListSimple() {
-		
-//		setPreferredSize(new Dimension(300, 200));
+
 		setLayout(new BorderLayout());
 		dlm = new DefaultListModel();
 //	    dlm.clear();
 	    
-//	    dlm.addElement(new Entry("The Big Lebowsky", "1.jpg"));
 	   	list = new JList();
 	   	list.setModel(dlm);
 	   	list.setLayoutOrientation(JList.HORIZONTAL_WRAP);
 	   	list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-	   	
-//	   	list.setFixedCellHeight(80);
-//	   	list.setFixedCellWidth(80);
 	   	
 		IconCellRenderer icr = new IconCellRenderer();
 		icr.setPreferredSize(new Dimension(100, 120));
@@ -54,7 +46,6 @@ public class IconListSimple extends JPanel {
 		
 		//button
 		JButton addButton = new JButton("Add Entry");
-//		addButton.setSize(12, 24);
 		addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 addItem("5.jpg", dlm);
@@ -89,7 +80,7 @@ public class IconListSimple extends JPanel {
 	}	
 }
 
-/////////////////////////////////////////////////////////////////////////
+////////-----------------Icon Cell Renderer Class--------------------/////////
 @SuppressWarnings("serial")
 class IconCellRenderer extends JLabel implements ListCellRenderer {
 	
@@ -101,8 +92,6 @@ class IconCellRenderer extends JLabel implements ListCellRenderer {
         		BorderFactory.createRaisedBevelBorder(), BorderFactory.createLoweredBevelBorder());
         Border gap = BorderFactory.createCompoundBorder(
         		BorderFactory.createLineBorder(Color.WHITE, 5), compound);
-//	    		BorderFactory.createRaisedBevelBorder()); //BorderFactory.createLoweredBevelBorder(), 
-	    		
         this.setBorder(gap);
     }
     public Component getListCellRendererComponent(
@@ -111,8 +100,7 @@ class IconCellRenderer extends JLabel implements ListCellRenderer {
         int index,
         boolean isSelected,
         boolean cellHasFocus)
-    {
-        	
+    {        	
     	IconEntry entry = (IconEntry) value;
     	if (!(IconListSimple.itemCounter == 0) && (entry != null)) {
     		setIcon(entry.getImage(list));
