@@ -111,7 +111,7 @@ class IconCellRenderer extends JLabel implements ListCellRenderer {
     {        	
     	IconEntry entry = (IconEntry) value;
     	if (!(IconListSimple.itemCounter == 0) && (entry != null)) {
-    		setIcon(entry.getImage(list));
+    		setIcon(entry.getImage());
     	}
         if (isSelected) {
           setBackground(HIGHLIGHT_COLOR);
