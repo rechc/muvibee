@@ -2,6 +2,7 @@ package de.muvibee.playground.cr;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.util.LinkedList;
 
 import javax.swing.JFrame;
@@ -17,7 +18,7 @@ public class UI_tree extends JFrame{
 		TreeView tv = new TreeView();;
 		JPanel content = tv;
 		this.setContentPane(content);
-		content.setLayout(new FlowLayout());
+		content.setLayout(new GridLayout());
 		
 		LinkedList<String> l1 = new LinkedList<String>();
 		l1.add("1"); l1.add("2"); l1.add("3");

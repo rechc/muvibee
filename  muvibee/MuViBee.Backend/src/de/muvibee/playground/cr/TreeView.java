@@ -12,6 +12,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 import de.muvibee.playground.tree.ExitListener;
@@ -28,6 +30,9 @@ public class TreeView extends JPanel{
 	  private LinkedList<String> prioList3 = new LinkedList<String>();
 	  
 	  DefaultMutableTreeNode root;
+	  DefaultMutableTreeNode stageOneChild;
+	  DefaultMutableTreeNode stageTwoChild;
+	  DefaultMutableTreeNode stageThreeChild;
 
 	public TreeView() {
 		setLayout(new FlowLayout());
@@ -38,30 +43,53 @@ public class TreeView extends JPanel{
 	public void refreshTree(){
 //	    DefaultMutableTreeNode root =
 		    root =  new DefaultMutableTreeNode("Root");
-		    DefaultMutableTreeNode child;
-		    DefaultMutableTreeNode grandChild;
-		    DefaultMutableTreeNode grandgrandChild;
+		    
 		
 	    for(String s : prioList1) {
-	        child = new DefaultMutableTreeNode(s);
-	        root.add(child);
+	        stageOneChild = new DefaultMutableTreeNode(s);
+	        root.add(stageOneChild);
 	        for(String s2 : prioList2) {
-	          grandChild =
+	          stageTwoChild =
 	            new DefaultMutableTreeNode(s2);
-	          child.add(grandChild);
+	          stageOneChild.add(stageTwoChild);
 	          for(String s3 : prioList3) {
-		          grandgrandChild =
+		          stageThreeChild =
 		            new DefaultMutableTreeNode(s3);
-		          grandChild.add(grandgrandChild);
+		          stageTwoChild.add(stageThreeChild);
 	          }
 	        }
 	      }
 	    
-		JTree tree1 = new JTree(root);
-		tree1.expandRow(1); // Expand children to illustrate leaf icons
-		JScrollPane pane1 = new JScrollPane(tree1);
+		JTree tree = new JTree(root);
+		tree.expandRow(1); // Expand children to illustrate leaf icons
+		JScrollPane pane1 = new JScrollPane(tree);
+		
+		   tree.addTreeSelectionListener(new TreeSelectionListener() {
+			      public void valueChanged(TreeSelectionEvent e) {
+			        DefaultMutableTreeNode node = (DefaultMutableTreeNode) e.getPath().getLastPathComponent();
+			        System.out.println("You selected " + node);
+			      }
+			    });
+		
 		add(pane1);
 		// pane1.setBorder(BorderFactory.createTitledBorder("TreeTitle"));
+	}
+	
+	public void newRoot(DefaultMutableTreeNode child){
+		root.add(child);
+	}
+	
+	public void newStageOneChild(DefaultMutableTreeNode child){
+		stageOneChild.add(child);
+	}
+	
+	public void newStageTwoChild(DefaultMutableTreeNode child){
+		stageTwoChild.add(child);
+	}
+	
+	
+	public void newStageThreeChild(DefaultMutableTreeNode child){
+		stageThreeChild.add(child);
 	}
 
 	public LinkedList<String> getPrioList1() {
