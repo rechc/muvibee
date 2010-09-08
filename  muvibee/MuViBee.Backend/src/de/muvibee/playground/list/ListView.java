@@ -12,6 +12,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 
+@SuppressWarnings("serial")
 public class ListView extends JPanel{
 	DefaultListModel  listModel;
 	CellRenderer lcr;
