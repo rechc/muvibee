@@ -1,5 +1,5 @@
 ﻿
-EAN_FOUND=Treffer!
-FALSE_EAN=Kein Ergebniss für diese EAN gefunden.
-FALSE_EAN_FORMAT=Falsches EAN Format!
-FALSE_EAN_MEDIA=Die EAN trifft nicht auf Medienprodukte zu!
+EAN_FOUND=принил!
+FALSE_EAN=нету резултатов к етому EAN.
+FALSE_EAN_FORMAT=не правилнй EAN формат!
+FALSE_EAN_MEDIA=EAN не медиум!
