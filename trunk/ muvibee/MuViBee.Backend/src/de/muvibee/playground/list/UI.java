@@ -1,17 +1,15 @@
 package de.muvibee.playground.list;
 
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
+@SuppressWarnings("serial")
 public class UI extends JFrame{
 	ListView listView;
 	
@@ -37,8 +35,6 @@ public class UI extends JFrame{
 		
 		content.add(addButton);
 
-		GridBagConstraints c = new GridBagConstraints();
-		
         // Groesse des Fensterbereichs setzen:
         content.setPreferredSize(new Dimension(250, 650));
 
