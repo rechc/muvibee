@@ -1,7 +1,6 @@
 package de.muvibee.ean;
 
-import java.awt.Image;
-import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -9,6 +8,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ResourceBundle;
 
+import javax.imageio.ImageIO;
 import javax.xml.stream.FactoryConfigurationError;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
@@ -83,7 +83,7 @@ public class EAN {
 		String productGroup = null;
 		String numberOfPagesOrDisc = null;
 		String theatricalReleaseDate = null;
-		Image cover = null;
+		BufferedImage cover = null;
 		
 		XMLStreamReader xmlStreamReader = XMLInputFactory.newInstance()
 				.createXMLStreamReader(inputStream);
@@ -136,8 +136,11 @@ public class EAN {
 					if (i == 2) {
 						String urlCover = xmlStreamReader.getElementText();
 						URL url_cover = new URL(urlCover);
-						Toolkit.getDefaultToolkit();
-						cover = Toolkit.getDefaultToolkit().createImage(url_cover);;
+						try {
+							cover = ImageIO.read(url_cover);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
 						i++;
 					} else { 
 						i++;
@@ -154,7 +157,12 @@ public class EAN {
 				Music.createMusic(title, artist, artist, theatricalReleaseDate, numberOfPagesOrDisc, cover);
 				System.out.println(bundle.getString("EAN_FOUND"));
 			} else if (productGroup.equals("Book")) {
-				Book.createBook(title, author, publisher, language, theatricalReleaseDate, isbn, numberOfPagesOrDisc, cover);
+				//Buch muss mit Konstruktor aufgerufen werden
+				Book b = new Book(author, language, isbn, title, "ean", "genre", 1999, "location", "lendTo", "lendDate", "backDate", 12, "description",
+						"comment", cover, false);
+				// Diese Klasse muss Buch/Musik/Video Objekt zurueckgeben
+				//b.insertBookIntoDB();
+				//Book.createBook(title, author, publisher, language, theatricalReleaseDate, isbn, numberOfPagesOrDisc, cover);
 				System.out.println(bundle.getString("EAN_FOUND"));
 			} else {
 				System.out.println(bundle.getString("FALSE_EAN_MEDIA"));

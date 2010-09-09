@@ -15,6 +15,7 @@ public class Test {
 		//Kann man die Sprache setzen, wenn nicht wird die Systemsprache verwendet
 		//Locale.setDefault(russian);
 		EAN ean = new EAN();
-		ean.searchEan("97839807-106788");
+		//Illuminati Buch EAN
+		ean.searchEan("9783404148660");
 	}
 }
