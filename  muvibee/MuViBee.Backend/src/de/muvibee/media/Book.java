@@ -17,6 +17,36 @@ public class Book extends Media{
 		this.isbn = isbn;
 	}
 
+//----------------( Compare )--------->
+	
+	public int compareAuthor(String compAuthor){
+		return author.compareTo(compAuthor); 
+	}
+	
+	public int compareLanguage(String compLanguage){
+		return language.compareTo(compLanguage);
+	}
+	
+	public int compareTitle(String compTitle){
+		return getTitle().compareTo(compTitle);
+	}
+	
+	public int compareGenre(String compGenre){
+		return getGenre().compareTo(compGenre);
+	}
+	
+	public int compareRating(int compRating){
+		int rating = getRating();
+		if (rating == compRating)
+			return 0;
+		else if (rating < compRating)
+			return 1;
+		else
+			return -1;
+	}
+	
+//-------------( Getter & Setter )------------->
+	
 	public String getAuthor() {
 		return author;
 	}
