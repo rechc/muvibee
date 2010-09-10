@@ -67,7 +67,8 @@ public class TreeView extends JPanel{
 		   tree.addTreeSelectionListener(new TreeSelectionListener() {
 			      public void valueChanged(TreeSelectionEvent e) {
 			        DefaultMutableTreeNode node = (DefaultMutableTreeNode) e.getPath().getLastPathComponent();
-			        System.out.println("You selected " + node);
+			        if (node.isLeaf())
+			        	System.out.println("You selected " + node);
 			      }
 			    });
 		
