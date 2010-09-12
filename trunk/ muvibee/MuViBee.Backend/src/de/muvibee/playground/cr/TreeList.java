@@ -5,14 +5,14 @@ import java.util.ArrayList;
 public class TreeList {
 
 	private String sortBy;
-	private ArrayList<Compare> list;
+	private ArrayList<TreeList> list;
 	
-	public TreeList(String sortBy, ArrayList<Compare> list) {
+	public TreeList(String sortBy, ArrayList<TreeList> list) {
 		this.sortBy = sortBy;
 		this.list = list;
 	}
 	
-	public ArrayList<Compare> getList() {
+	public ArrayList<TreeList> getList() {
 		return list;
 	}
 	
@@ -20,7 +20,7 @@ public class TreeList {
 		return sortBy;
 	}
 	
-	public void setList(ArrayList<Compare> list) {
+	public void setList(ArrayList<TreeList> list) {
 		this.list = list;
 	}
 	

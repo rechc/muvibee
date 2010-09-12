@@ -15,13 +15,18 @@ public class CreateTreeList{
 	public CreateTreeList(ArrayList<Media> mediaList, ArrayList<Integer> sortedBy) {
 		sortedList = new ArrayList<Compare>();
 		treeList = new ArrayList<TreeList>();
+
+		sortedList = sortList(mediaList, sortedBy.get(0));
+		greateTree();
+		
+	}
+	
+	private ArrayList<Compare> sortList(ArrayList<Media> mediaList, int sortedBy){
 		ArrayList<Compare> list = new ArrayList<Compare>();
 		String sortString = null;
-		String preview;
-		int iCounter = 0;
-
+		
 		for (Media m : mediaList){
-			switch (sortedBy.get(0)){
+			switch (sortedBy){
 				case 1:
 					sortString = Integer.toString(m.getYear());
 					break;
@@ -30,52 +35,35 @@ public class CreateTreeList{
 				default:
 					;
 			}
-			sortedList.add(new Compare(sortString ,m));
+			list.add(new Compare(sortString ,m));
 		}
-		
-		Collections.sort(sortedList);
-		
-		preview = sortedList.get(0).getSortedBy();
+		Collections.sort(list);
+		return list;
+	}
+	
+//	private void test(TreeList tree, int n, ArrayList<Integer> sortedBy) {
+//		ArrayList<TreeList> list = new ArrayList<TreeList>();
+//		if (n < sortedBy.size()){
+//			tree.setList(test());
+//		}
+//		
+//	}
+	
+	private void greateTree() {
+		ArrayList<Compare> list = new ArrayList<Compare>();
+		ArrayList<TreeList> nullList = new ArrayList<TreeList>();
+		String preview = sortedList.get(0).getSortedBy();
 		
 		for (Compare c : sortedList){
 			if(c.equals(preview)){
-				list.add(c);
+				
+				nullList.add(new TreeList(c.getSortedBy(), null));
 				preview = c.getSortedBy();
 			}else {
-				treeList.add(new TreeList(c.getSortedBy(),list));
+				treeList.add(new TreeList(c.getSortedBy(),nullList));
 				list.clear();
 			}
 		}
-		
 	}
-	
-	private void greateTree(ArrayList<Media> mediaList, int sortBy) {
-		ArrayList<Media> list = new ArrayList<Media>();
-		String sortString;
 		
-			for (Media m : mediaList){
-				switch (sortBy){
-					case 1:
-						sortString = Integer.toString(m.getYear());
-						break;
-					case 2:
-						break;
-					default:
-						;
-				}
-//				if (sortString.equals(arg0))
-			}
-	}
-	
-	public int compareCompanant(Object o, int componant){
-		//1 = name		
-		
-		switch (componant){
-		case 1:
-			;
-		default:
-			return 0;
-		}
-	}
-	
 }
