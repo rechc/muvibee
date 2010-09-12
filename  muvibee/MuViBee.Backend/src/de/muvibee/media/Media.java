@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 import de.muvibee.util.DBInsertor;
 
-public abstract class Media {
+public abstract class Media implements Comparable{
 	private String title;
 	private String ean;
 	private String genre;
@@ -35,6 +35,13 @@ public abstract class Media {
 		this.comment = comment;
 		this.cover = cover;
 		this.isDeleted = isDeleted;
+	}
+	
+	@Override
+	public int compareTo(Object o) {
+		String string = (String) o;
+		this.compareTo(string);
+		return 0;
 	}
 
 	public abstract String toString();
