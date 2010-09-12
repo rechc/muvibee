@@ -1,21 +1,24 @@
 package de.muvibee.playground.cr;
 
+import java.util.ArrayList;
+
+import de.muvibee.media.Media;
+
 public class Compare implements Comparable{
 
 	private String sortedBy;
-	private Object object;
+	private Media childList;
 	
-	public Compare(Object sortedBy, Object o) {
-		this.sortedBy = (String) sortedBy;
-		this.object = o;
+	public Compare(String sortedBy, Media childList) {
+		this.sortedBy = sortedBy;
+		this.childList = childList;
 	}
 
 	
 	@Override
 	public int compareTo(Object o) {
 		String string = (String) o;
-		sortedBy.compareTo(string);
-		return 0;
+		return sortedBy.compareTo(string);
 	}
 	
 	
@@ -44,12 +47,12 @@ public class Compare implements Comparable{
 		this.sortedBy = sortedBy;
 	}
 
-	public Object getObject() {
-		return object;
+	public ArrayList<Media> getChildList() {
+		return childList;
 	}
-
-	public void setObject(Object object) {
-		this.object = object;
+	
+	public void setChildList(ArrayList<Media> childList) {
+		this.childList = childList;
 	}
 
 }
