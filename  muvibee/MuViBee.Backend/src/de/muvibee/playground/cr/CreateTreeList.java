@@ -41,13 +41,13 @@ public class CreateTreeList{
 		return list;
 	}
 	
-//	private void test(TreeList tree, int n, ArrayList<Integer> sortedBy) {
-//		ArrayList<TreeList> list = new ArrayList<TreeList>();
-//		if (n < sortedBy.size()){
-//			tree.setList(test());
-//		}
-//		
-//	}
+	private ArrayList<TreeList> buildStages(int n) {
+		ArrayList<TreeList> tree = new ArrayList<TreeList>();
+		if (n >= 0){
+			tree.add(new TreeList(null, buildStages(n-1)));
+		}
+		return tree;
+	}
 	
 	private void greateTree() {
 		ArrayList<Compare> list = new ArrayList<Compare>();
