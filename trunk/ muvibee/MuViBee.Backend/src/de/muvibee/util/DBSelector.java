@@ -20,16 +20,20 @@ import de.muvibee.media.Video;
 /**
  * @author tobiaslana
  * 
- * Klasse erwartet beim Aufruf zwei Parameter
- * String media ['book' | 'music' | 'video'] dient zur Unterscheidung welche Daten selektiert werden sollen
- * Boolean deleted steuert ob geloeschte Daten selektiert werden oder nicht
+ * Klasse erwartet beim Aufruf einen Parameter
+ * Boolean deleted steuert ob geloeschte Daten selektiert werden oder nicht XOR !!
  * 
- * mit getMediaList erhaelt man eine LinkedList<Media>
+ * es werden drei LinkedList erstellt bookList, musicList, videoList
+ * 
  * 
  * Aufruf:
- * DBSelector dbs = new DBSelector();
- * LinkedList<Media> mediaList;
- * mediaList = new dbs.getMediaList();
+ * DBSelector dbs = new DBSelector([false|true]);
+ * LinkedList<Book> bookList;
+ * LinkedList<Music> musicList;
+ * LinkedList<Video> videoList;
+ * bookList 	= dbs.getBookList();
+ * musicList 	= dbs.getMusicList();
+ * videoList 	= dbs.getVideoList();
  *
  */
 
@@ -40,28 +44,32 @@ public class DBSelector {
 
 	private static Connection con = null;
 	
-	private static LinkedList<Media> mediaList;
+	private static LinkedList<Book> bookList;
+	private static LinkedList<Music> musicList;
+	private static LinkedList<Video> videoList;
 	
-	public DBSelector(String media, Boolean deleted) {
-		selectMedia(media, deleted);
+	public DBSelector(Boolean deleted) {
+		selectMedia(deleted);
 	}
 	
-	public void selectMedia(String media, Boolean isDeleted) {
+	public void selectMedia(Boolean isDeleted) {
 		try {
 			con = DBConnector.getConnection();
-			PreparedStatement ps = null;
-			if (media.compareTo("book") == 0) {
-				ps = con.prepareStatement(SQL_GET_BOOKS);
-			}
-			else if (media.compareTo("music") == 0) {
-				ps = con.prepareStatement(SQL_GET_MUSIC);
-			}
-			else if (media.compareTo("video") == 0) {
-				ps = con.prepareStatement(SQL_GET_VIDEOS);
-			}
-			ps.setBoolean(1, isDeleted);
-			ResultSet rs = ps.executeQuery();
-			RsToList(media, rs);
+			PreparedStatement psBook = null;
+			PreparedStatement psMusic = null;
+			PreparedStatement psVideo = null;
+			psBook 	= con.prepareStatement(SQL_GET_BOOKS);
+			psMusic = con.prepareStatement(SQL_GET_MUSIC);
+			psVideo = con.prepareStatement(SQL_GET_VIDEOS);
+			psBook.setBoolean(1, isDeleted);
+			psMusic.setBoolean(1, isDeleted);
+			psVideo.setBoolean(1, isDeleted);
+			ResultSet rsBook = psBook.executeQuery();
+			ResultSet rsMusic = psMusic.executeQuery();
+			ResultSet rsVideo = psVideo.executeQuery();
+			CreateBookList(rsBook);
+			CreateMusicList(rsMusic);
+			CreateVideoList(rsVideo);
 			con.prepareStatement("SHUTDOWN").execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -71,8 +79,34 @@ public class DBSelector {
 		
 	}
 
-	private void RsToList(String media, ResultSet rs) throws SQLException, IOException {
-		mediaList = new LinkedList<Media>();
+	private void CreateBookList(ResultSet rs) throws SQLException, IOException {
+		bookList = new LinkedList<Book>();
+		while (rs.next()) {
+			int ID 				= rs.getInt(1);
+			String title 		= rs.getString(2);
+			String ean 			= rs.getString(3);
+			String genre 		= rs.getString(4);
+			int year 			= rs.getInt(5);
+			String location 	= rs.getString(6);
+			String lendTo 		= rs.getString(7);
+			String lendDate 	= rs.getString(8);
+			String backDate 	= rs.getString(9);
+			int rating	 		= rs.getInt(10);
+			String description 	= rs.getString(11);
+			String comment 		= rs.getString(12);
+			String imagepath 	= rs.getString(13);
+			BufferedImage cover = ImageIO.read(new File(imagepath));
+			String author 	= rs.getString(14);
+			String language = rs.getString(15);
+			String isbn 	= rs.getString(16);
+			Boolean isDeleted 	= rs.getBoolean(17);
+			Book b = new Book(author, language, isbn, title, ean, genre, year, location, lendTo, lendDate, backDate, rating, description, comment, cover, isDeleted);
+			bookList.add(b);
+			
+		}
+	}
+	private void CreateMusicList(ResultSet rs) throws SQLException, IOException {
+		musicList = new LinkedList<Music>();
 		while (rs.next()) {
 			int ID 				= rs.getInt(1);
 			String title 		= rs.getString(2);
@@ -89,38 +123,48 @@ public class DBSelector {
 			String imagepath 	= rs.getString(13);
 			BufferedImage cover = ImageIO.read(new File(imagepath));
 			Boolean isDeleted 	= rs.getBoolean(17);
-			if (media.compareTo("book") == 0) {
-				String author 	= rs.getString(14);
-				String language = rs.getString(15);
-				String isbn 	= rs.getString(16);
-				Book b = new Book(author, language, isbn, title, ean, genre, year, location, lendTo, lendDate, backDate, rating, description, comment, cover, isDeleted);
-				mediaList.add(b);
-			}
-			else if (media.compareTo("music") == 0) {
-				String format 		= rs.getString(14);
-				String interpreter 	= rs.getString(15);
-				String type			= rs.getString(16);	
-				Music m = new Music(format, interpreter, type, title, ean, genre, year, location, lendTo, lendDate, backDate, rating, description, comment, cover, isDeleted);
-				mediaList.add(m);
-			}
-			else if (media.compareTo("video") == 0) {
-				String format 	= rs.getString(14);
-				String director = rs.getString(15);
-				String actor 	= rs.getString(16);	
-				Video v = new Video(format, director, actor, title, ean, genre, year, location, lendTo, lendDate, backDate, rating, description, comment, cover, isDeleted);
-				mediaList.add(v);
-			}
-			
+			String format 		= rs.getString(14);
+			String interpreter 	= rs.getString(15);
+			String type			= rs.getString(16);	
+			Music m = new Music(format, interpreter, type, title, ean, genre, year, location, lendTo, lendDate, backDate, rating, description, comment, cover, isDeleted);
+			musicList.add(m);
+		}
+	}
+	private void CreateVideoList(ResultSet rs) throws SQLException, IOException {
+		videoList = new LinkedList<Video>();
+		while (rs.next()) {
+			int ID 				= rs.getInt(1);
+			String title 		= rs.getString(2);
+			String ean 			= rs.getString(3);
+			String genre 		= rs.getString(4);
+			int year 			= rs.getInt(5);
+			String location 	= rs.getString(6);
+			String lendTo 		= rs.getString(7);
+			String lendDate 	= rs.getString(8);
+			String backDate 	= rs.getString(9);
+			int rating	 		= rs.getInt(10);
+			String description 	= rs.getString(11);
+			String comment 		= rs.getString(12);
+			String imagepath 	= rs.getString(13);
+			BufferedImage cover = ImageIO.read(new File(imagepath));
+			Boolean isDeleted 	= rs.getBoolean(17);
+			String format 	= rs.getString(14);
+			String director = rs.getString(15);
+			String actor 	= rs.getString(16);	
+			Video v = new Video(format, director, actor, title, ean, genre, year, location, lendTo, lendDate, backDate, rating, description, comment, cover, isDeleted);
+			videoList.add(v);
 		}
 	}
 
-	public static LinkedList<Media> getMediaList() {
-		return mediaList;
+	public static LinkedList<Book> getBookList() {
+		return bookList;
 	}
-
-	public static void setMediaList(LinkedList<Media> mediaList) {
-		DBSelector.mediaList = mediaList;
+	public static LinkedList<Music> getMusicList() {
+		return musicList;
 	}
-
+	public static LinkedList<Video> getVideoList() {
+		return videoList;
+	}
+	
 
 }
