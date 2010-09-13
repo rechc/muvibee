@@ -66,7 +66,7 @@ public class EAN {
 				+ "&ResponseGroup=ItemAttributes,Images" 
 				+ "&SearchIndex=Blended"
 				+ "&IdType=EAN");
-
+		System.out.println(url);
 		URLConnection conn = url.openConnection();
 		conn.connect();
 		return conn.getInputStream();
@@ -83,6 +83,7 @@ public class EAN {
 		String productGroup = null;
 		String numberOfPagesOrDisc = null;
 		String theatricalReleaseDate = null;
+		String ean = null;
 		BufferedImage cover = null;
 		
 		XMLStreamReader xmlStreamReader = XMLInputFactory.newInstance()
@@ -132,6 +133,9 @@ public class EAN {
 				if (xmlStreamReader.getLocalName().equals("ReleaseDate")) {
 					theatricalReleaseDate = xmlStreamReader.getElementText();
 				}
+				if (xmlStreamReader.getLocalName().equals("EAN")) {
+					ean = xmlStreamReader.getElementText();
+				}
 				if (xmlStreamReader.getLocalName().equals("URL")) {
 					if (i == 2) {
 						String urlCover = xmlStreamReader.getElementText();
@@ -151,17 +155,17 @@ public class EAN {
 		xmlStreamReader.close();
 		if (error == null) {
 			if (productGroup.equals("DVD") || productGroup.equals("Video")) {
-				Video.createVideo(title, theatricalReleaseDate, cover);
+//				Video.createVideo(title, theatricalReleaseDate, cover);
 				System.out.println(bundle.getString("EAN_FOUND"));
 			} else if (productGroup.equals("Music")) {
-				Music.createMusic(title, artist, artist, theatricalReleaseDate, numberOfPagesOrDisc, cover);
+//				Music.createMusic(title, artist, artist, theatricalReleaseDate, numberOfPagesOrDisc, cover);
 				System.out.println(bundle.getString("EAN_FOUND"));
 			} else if (productGroup.equals("Book")) {
 				//Buch muss mit Konstruktor aufgerufen werden
-				Book b = new Book(author, language, isbn, title, "ean", "genre", 1999, "location", "lendTo", "lendDate", "backDate", 12, "description",
-						"comment", cover, false);
+				Book b = new Book(author, language, isbn, title, ean, "genre", 1999, "location", "lendTo", "2010-10-10", "2010-11-11", 12, "description: ich bin eine Beschreibung",
+						"comment: Ich bin ein Kommentar", cover, false);
 				// Diese Klasse muss Buch/Musik/Video Objekt zurueckgeben
-				//b.insertBookIntoDB();
+				b.insertIntoDB();
 				//Book.createBook(title, author, publisher, language, theatricalReleaseDate, isbn, numberOfPagesOrDisc, cover);
 				System.out.println(bundle.getString("EAN_FOUND"));
 			} else {
