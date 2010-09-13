@@ -68,6 +68,8 @@ public class DBInsertor {
 			ps.setString(16, b.getIsbn());
 			ps.setBoolean(17, b.isDeleted());
 			ps.executeUpdate();
+			System.out.println(ps.toString());
+			System.out.println("Book added");
 		}
 	}
 
@@ -95,6 +97,9 @@ public class DBInsertor {
 			ps.setString(16, m.getType());
 			ps.setBoolean(17, m.isDeleted());
 			ps.executeUpdate();
+			System.out.println(ps.toString());
+			System.out.println("Music added");
+
 		}
 	}
 
@@ -121,7 +126,9 @@ public class DBInsertor {
 			ps.setString(15, v.getDirector());
 			ps.setString(16, v.getActor());
 			ps.setBoolean(17, v.isDeleted());
-			ps.executeUpdate();
+			ps.executeUpdate();			
+			System.out.println(ps.toString());
+			System.out.println("Video added");
 		}
 	}
 	
