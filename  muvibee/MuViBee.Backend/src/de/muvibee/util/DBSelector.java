@@ -46,7 +46,7 @@ public class DBSelector {
 		selectMedia(media, deleted);
 	}
 	
-	public void selectMedia(String media, Boolean deleted) {
+	public void selectMedia(String media, Boolean isDeleted) {
 		try {
 			con = DBConnector.getConnection();
 			PreparedStatement ps = null;
@@ -59,7 +59,7 @@ public class DBSelector {
 			else if (media.compareTo("video") == 0) {
 				ps = con.prepareStatement(SQL_GET_VIDEOS);
 			}
-			ps.setBoolean(1, deleted);
+			ps.setBoolean(1, isDeleted);
 			ResultSet rs = ps.executeQuery();
 			RsToList(media, rs);
 			con.prepareStatement("SHUTDOWN").execute();
@@ -87,7 +87,7 @@ public class DBSelector {
 			String description 	= rs.getString(11);
 			String comment 		= rs.getString(12);
 			String imagepath 	= rs.getString(13);
-			BufferedImage cover = ImageIO.read(new File("resources/icons/" + imagepath));
+			BufferedImage cover = ImageIO.read(new File(imagepath));
 			Boolean isDeleted 	= rs.getBoolean(17);
 			if (media.compareTo("book") == 0) {
 				String author 	= rs.getString(14);
