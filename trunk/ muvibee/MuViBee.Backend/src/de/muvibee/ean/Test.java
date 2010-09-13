@@ -11,7 +11,7 @@ public class Test {
 	 */
 	public static void main(String[] args) {
 		Locale turkish = new Locale("tr", "TR");
-		Locale russian = new Locale("ru", "RU");
+		Locale russian = new Locale("rug", "RU");
 		//Kann man die Sprache setzen, wenn nicht wird die Systemsprache verwendet
 		//Locale.setDefault(russian);
 		EAN ean = new EAN();
