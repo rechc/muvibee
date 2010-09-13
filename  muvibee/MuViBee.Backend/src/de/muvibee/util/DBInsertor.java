@@ -17,9 +17,9 @@ import de.muvibee.media.Music;
 import de.muvibee.media.Video;
 
 public class DBInsertor {
-	private final static String SQL_INSERT_BOOK  = "INSERT INTO books (ID, title, ean, genre, year, location, lendto, lenddate, backdate, rating, description, comment, cover, author, language, isbn, isdeleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	private final static String SQL_INSERT_MUSIC = "INSERT INTO music (ID, title, ean, genre, year, location, lendto, lenddate, backdate, rating, description, comment, cover, format, interpreter, type, isdeleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	private final static String SQL_INSERT_VIDEO = "INSERT INTO video (ID, title, ean, genre, year, location, lendto, lenddate, backdate, rating, description, comment, cover, format, director, actor, isdeleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private final static String SQL_INSERT_BOOK  = "INSERT INTO books (ID, title, ean, genre, year, location, lendto, lenddate, backdate, rating, description, comment, cover, author, language, isbn, isdeleted) VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private final static String SQL_INSERT_MUSIC = "INSERT INTO music (ID, title, ean, genre, year, location, lendto, lenddate, backdate, rating, description, comment, cover, format, interpreter, type, isdeleted) VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private final static String SQL_INSERT_VIDEO = "INSERT INTO video (ID, title, ean, genre, year, location, lendto, lenddate, backdate, rating, description, comment, cover, format, director, actor, isdeleted) VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private final static String SQL_SELECT_BOOK  = "SELECT ID From books WHERE ID = ?";
 	private final static String SQL_SELECT_MUSIC = "SELECT ID From music WHERE ID = ?";
 	private final static String SQL_SELECT_VIDEO = "SELECT ID From video WHERE ID = ?";
