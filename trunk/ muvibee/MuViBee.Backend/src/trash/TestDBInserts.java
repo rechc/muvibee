@@ -1,10 +1,13 @@
 package trash;
 
 import java.awt.image.BufferedImage;
+import java.util.LinkedList;
 
+import de.muvibee.media.Media;
 import de.muvibee.media.Book;
 import de.muvibee.media.Music;
 import de.muvibee.media.Video;
+import de.muvibee.util.DBSelector;
 
 public class TestDBInserts {
 
@@ -29,5 +32,12 @@ public class TestDBInserts {
 		v.setBackDate("2010-10-10");
 		v.setLendDate("2010-10-10");
 		v.insertIntoDB();	
+		
+		DBSelector dbs = new DBSelector("books", false);
+		LinkedList<Media> mediaList;
+		mediaList = dbs.getMediaList();
+		for (Media m1 : mediaList) {
+			m1.toString();
+		}
 	}
 }
