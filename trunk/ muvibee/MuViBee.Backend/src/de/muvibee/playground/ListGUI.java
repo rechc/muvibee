@@ -29,7 +29,7 @@ public class ListGUI extends JFrame {
                         content.add(sl, BorderLayout.NORTH);
                         content.add(lcb, BorderLayout.SOUTH);
                         content.validate();
-                        System.out.println("Simple List");
+//                        System.out.println("Simple List");
             		}
             		if (((String) e.getItem()).equals("Simple Icon List")) {
             			IconListSimple ils = new IconListSimple();
@@ -37,7 +37,7 @@ public class ListGUI extends JFrame {
                         content.add(ils, BorderLayout.NORTH);
                         content.add(lcb, BorderLayout.SOUTH);
                         content.validate();
-                        System.out.println("Simple Icon List");
+//                        System.out.println("Simple Icon List");
             		}
                 } 
             }
