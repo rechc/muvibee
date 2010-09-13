@@ -3,10 +3,16 @@ package de.muvibee.playground.list;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import de.muvibee.media.Book;
 
 
 @SuppressWarnings("serial")
@@ -46,7 +52,14 @@ public class UI extends JFrame{
 	}
 	
 	private void addItem(String cover, String author, String title) {
-		listView.listAdd(new ListEntry(cover, author, title));
+		Book book = null;
+		try {
+			book = new Book(author, "language", "isbn", title, "ean", "genre", 2010, "location", "lendTo", "lendDate", "backDate", 1, "description", "comment", ImageIO.read(new File("resources/icons/" + cover)), false);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		listView.listAdd(new ListEntryBook(book));
 	}
 	
 	public static void main(String[] args) {
