@@ -1,21 +1,15 @@
 package de.muvibee.playground;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
-import javax.swing.border.Border;
 
 
 @SuppressWarnings("serial")
@@ -39,9 +33,9 @@ public class IconListSimple extends JPanel {
 	   	list.setLayoutOrientation(JList.HORIZONTAL_WRAP);
 	   	list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	   	
-		IconCellRenderer icr = new IconCellRenderer();
-		icr.setPreferredSize(new Dimension(100, 120));
-		list.setCellRenderer(icr);		
+		CellRenderer cr = new CellRenderer(CellRenderer.rendererType.ICON_LIST);
+		cr.setPreferredSize(new Dimension(100, 120));
+		list.setCellRenderer(cr);		
 		list.setVisibleRowCount(-1);
 		
 		
@@ -85,42 +79,4 @@ public class IconListSimple extends JPanel {
 		System.out.println("Geaddet." + "\t" + itemCounter);
 		
 	}	
-}
-
-////////-----------------Icon Cell Renderer Class--------------------/////////
-@SuppressWarnings("serial")
-class IconCellRenderer extends JLabel implements ListCellRenderer {
-	
-	private static final Color HIGHLIGHT_COLOR = new Color(0, 0, 128);
-	
-    public IconCellRenderer() {
-        setOpaque(true);
-        Border compound = BorderFactory.createCompoundBorder(
-        		BorderFactory.createRaisedBevelBorder(), BorderFactory.createLoweredBevelBorder());
-        Border gap = BorderFactory.createCompoundBorder(
-        		BorderFactory.createLineBorder(Color.WHITE, 5), compound);
-        this.setBorder(gap);
-    }
-    
-    public Component getListCellRendererComponent(
-        JList list,
-        Object value,
-        int index,
-        boolean isSelected,
-        boolean cellHasFocus)
-    {        	
-    	IconEntry entry = (IconEntry) value;
-    	if (!(IconListSimple.itemCounter == 0) && (entry != null)) {
-    		setIcon(entry.getImage());
-    	}
-        if (isSelected) {
-          setBackground(HIGHLIGHT_COLOR);
-          setForeground(Color.white);
-        } else {
-          setBackground(Color.white);
-          setForeground(Color.black);
-        }
-
-        return this;
-    }
 }
