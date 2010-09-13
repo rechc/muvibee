@@ -6,28 +6,27 @@ import java.awt.GridLayout;
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import de.muvibee.media.Media;
 
 @SuppressWarnings("serial")
 public class ListEntry extends JPanel{
 	
 	private ImageIcon icon;
-	private String author;
+	private String info1;
 	private String title;
 	
-	public ListEntry(String cover, String author, String title) {
-		this.icon = resizeIcon(70, 70, "resources/icons/" + cover);
-		this.author=author;
-		this.title=title;	
+	public ListEntry(Media media, String special) {
+		this.icon = resizeIcon(70, 70, media.getCover());
+		this.info1 = special;
+		this.title = media.getTitle();	
 		
 		// -----------------
-		// |       | Author |
+		// |       | Info 1 |
 		// | Cover |________|
 		// |       | Titel  |
 		// |_______|________|
@@ -38,32 +37,28 @@ public class ListEntry extends JPanel{
 		label.setIcon(icon);
 		add(label);
 		
-		JPanel author_title = new JPanel(new GridLayout(2,1,0,-20));
-		JLabel authorLbl = new JLabel(author);
+		JPanel info1_title = new JPanel(new GridLayout(2,1,0,-20));
+		JLabel info1Lbl = new JLabel(info1);
 		JLabel titleLbl = new JLabel(title);
-		author_title.add(authorLbl);
-		author_title.add(titleLbl);		
-		add(author_title);
+		info1_title.add(info1Lbl);
+		info1_title.add(titleLbl);		
+		add(info1_title);
 	}
 	
-	private ImageIcon resizeIcon(int width, int height, String path) {
+
+	
+	private ImageIcon resizeIcon(int width, int height, BufferedImage image) {
 		ImageIcon result = null;
-		try {
-			BufferedImage src = ImageIO.read(new File(path));
-			BufferedImage dest = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-			
-			AffineTransform trans = AffineTransform.getScaleInstance((double)width/src.getWidth(), (double)height/src.getHeight());
-			
-			Graphics2D g2d = (Graphics2D) dest.createGraphics();
-			g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
-			g2d.drawImage(src, trans, null);			
-			g2d.dispose();
-			
-			result = new ImageIcon(dest);
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		BufferedImage dest = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+		
+		AffineTransform trans = AffineTransform.getScaleInstance((double)width/image.getWidth(), (double)height/image.getHeight());
+		
+		Graphics2D g2d = (Graphics2D) dest.createGraphics();
+		g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+		g2d.drawImage(image, trans, null);			
+		g2d.dispose();
+		
+		result = new ImageIcon(dest);
 		return result;		
 	}
 	
@@ -71,13 +66,16 @@ public class ListEntry extends JPanel{
 		return icon;
 	}
 
-	public String getAuthor() {
-		return author;
+	public String getInfo1() {
+		return info1;
 	}
 
 	public String getTitle() {
 		return title;
 	}
 	
+	public void setInfo1(String text) {
+		this.info1 = text;
+	}
 
 }
