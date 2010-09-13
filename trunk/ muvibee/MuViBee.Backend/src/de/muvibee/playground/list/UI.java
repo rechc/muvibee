@@ -59,7 +59,7 @@ public class UI extends JFrame{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		listView.listAdd(new ListEntryBook(book));
+		listView.trashListAdd(new ListEntryBook(book));
 	}
 	
 	public static void main(String[] args) {

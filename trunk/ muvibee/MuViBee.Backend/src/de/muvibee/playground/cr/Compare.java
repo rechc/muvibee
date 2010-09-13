@@ -46,13 +46,4 @@ public class Compare implements Comparable{
 	public void setSortedBy(String sortedBy) {
 		this.sortedBy = sortedBy;
 	}
-
-	public ArrayList<Media> getChildList() {
-		return childList;
-	}
-	
-	public void setChildList(ArrayList<Media> childList) {
-		this.childList = childList;
-	}
-
 }

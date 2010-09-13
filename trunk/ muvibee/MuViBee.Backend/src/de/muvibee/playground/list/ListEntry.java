@@ -17,12 +17,12 @@ import de.muvibee.media.Media;
 public class ListEntry extends JPanel{
 	
 	private ImageIcon icon;
-	private String info1;
+	private String special;
 	private String title;
 	
 	public ListEntry(Media media, String special) {
 		this.icon = resizeIcon(70, 70, media.getCover());
-		this.info1 = special;
+		this.special = special;
 		this.title = media.getTitle();	
 		
 		// -----------------
@@ -38,7 +38,7 @@ public class ListEntry extends JPanel{
 		add(label);
 		
 		JPanel info1_title = new JPanel(new GridLayout(2,1,0,-20));
-		JLabel info1Lbl = new JLabel(info1);
+		JLabel info1Lbl = new JLabel(special);
 		JLabel titleLbl = new JLabel(title);
 		info1_title.add(info1Lbl);
 		info1_title.add(titleLbl);		
@@ -66,16 +66,16 @@ public class ListEntry extends JPanel{
 		return icon;
 	}
 
-	public String getInfo1() {
-		return info1;
+	public String getSpecial() {
+		return special;
 	}
 
 	public String getTitle() {
 		return title;
 	}
 	
-	public void setInfo1(String text) {
-		this.info1 = text;
+	public void setSpecial(String text) {
+		this.special = text;
 	}
 
 }

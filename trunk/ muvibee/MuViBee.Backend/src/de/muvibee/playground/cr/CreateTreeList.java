@@ -16,16 +16,18 @@ public class CreateTreeList{
 		sortedList = new ArrayList<Compare>();
 		treeList = new ArrayList<TreeList>();
 
+		
+		
 		sortedList = sortList(mediaList, sortedBy.get(0));
 		greateTree();
 		
 	}
 	
-	private ArrayList<Compare> sortList(ArrayList<Media> mediaList, int sortedBy){
+	private ArrayList<Compare> sortList(TreeList tree, int sortedBy){
 		ArrayList<Compare> list = new ArrayList<Compare>();
 		String sortString = null;
 		
-		for (Media m : mediaList){
+		for (Media m : tree.getMediaList()){
 			switch (sortedBy){
 				case 1:
 					sortString = Integer.toString(m.getYear());
@@ -39,6 +41,10 @@ public class CreateTreeList{
 		}
 		Collections.sort(list);
 		return list;
+	}
+	
+	private TreeList test(MediaList media){
+		
 	}
 	
 	private ArrayList<TreeList> buildStages(int n) {
