@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import de.muvibee.util.DBInsertor;
 
 public abstract class Media implements Comparable{
+	private int ID;
 	private String title;
 	private String ean;
 	private String genre;
@@ -19,9 +20,10 @@ public abstract class Media implements Comparable{
 	private BufferedImage cover;
 	private boolean isDeleted;
 
-	protected Media(String title, String ean, String genre, int year, String location, String lendTo,
+	protected Media(int ID, String title, String ean, String genre, int year, String location, String lendTo,
 			String lendDate, String backDate, int rating, String description,
 			String comment, BufferedImage cover, boolean isDeleted) {
+		this.ID = ID;
 		this.title = title;
 		this.ean = ean;
 		this.genre = genre;
@@ -50,7 +52,10 @@ public abstract class Media implements Comparable{
 		DBInsertor.insertIntoDB(this);
 	}
 	
-
+	public int getID() {
+		return this.ID;
+	}
+	
 	public String getTitle() {
 		return title;
 	}

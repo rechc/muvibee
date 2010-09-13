@@ -7,11 +7,11 @@ public class Music extends Media{
 	private String interpreter;
 	private String type;
 
-	public Music(String format, String interpreter, String type, String title,
+	public Music(int ID, String format, String interpreter, String type, String title,
 			String ean, String genre, int year, String location, String lendTo,
 			String lendDate, String backDate, int rating, String description,
 			String comment, BufferedImage cover, boolean isDeleted) {
-		super(title, ean, genre, year, location, lendTo, lendDate, backDate, rating, description, comment, cover, isDeleted);
+		super(ID, title, ean, genre, year, location, lendTo, lendDate, backDate, rating, description, comment, cover, isDeleted);
 		this.format = format;
 		this.interpreter = interpreter;
 		this.type = type;

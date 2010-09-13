@@ -7,11 +7,11 @@ public class Video extends Media{
 	private String director;
 	private String actor;
 
-	public Video(String format, String director, String actor, String title,
+	public Video(int ID, String format, String director, String actor, String title,
 			String ean, String genre, int year, String location, String lendTo,
 			String lendDate, String backDate, int rating, String description,
 			String comment, BufferedImage cover, boolean isDeleted) {
-		super(title, ean, genre, year, location, lendTo, lendDate, backDate, rating, description, comment, cover, isDeleted);
+		super(ID, title, ean, genre, year, location, lendTo, lendDate, backDate, rating, description, comment, cover, isDeleted);
 		this.format = format;
 		this.director = director;
 		this.actor = actor;
