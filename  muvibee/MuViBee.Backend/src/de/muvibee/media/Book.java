@@ -74,6 +74,5 @@ public class Book extends Media{
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return null;
-	}
+		return (super.getTitle() + " " + this.isDeleted());	}
 }

@@ -16,6 +16,7 @@ public class Music extends Media{
 		this.interpreter = interpreter;
 		this.type = type;
 	}
+	
 
 	public String getFormat() {
 		return format;
@@ -44,6 +45,6 @@ public class Music extends Media{
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return null;
+		return (super.getTitle() + " " + this.isDeleted());
 	}
 }
