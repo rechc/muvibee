@@ -34,6 +34,9 @@ import de.muvibee.media.Video;
  * bookList 	= dbs.getBookList();
  * musicList 	= dbs.getMusicList();
  * videoList 	= dbs.getVideoList();
+ * 
+ * Testklasse:
+ * trash.TestDBSelects
  *
  */
 
