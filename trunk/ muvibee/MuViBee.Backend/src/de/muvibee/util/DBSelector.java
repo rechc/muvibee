@@ -103,7 +103,7 @@ public class DBSelector {
 			String language = rs.getString(15);
 			String isbn 	= rs.getString(16);
 			Boolean isDeleted 	= rs.getBoolean(17);
-			Book b = new Book(author, language, isbn, title, ean, genre, year, location, lendTo, lendDate, backDate, rating, description, comment, cover, isDeleted);
+			Book b = new Book(ID, author, language, isbn, title, ean, genre, year, location, lendTo, lendDate, backDate, rating, description, comment, cover, isDeleted);
 			bookList.add(b);
 			
 		}
@@ -129,7 +129,7 @@ public class DBSelector {
 			String format 		= rs.getString(14);
 			String interpreter 	= rs.getString(15);
 			String type			= rs.getString(16);	
-			Music m = new Music(format, interpreter, type, title, ean, genre, year, location, lendTo, lendDate, backDate, rating, description, comment, cover, isDeleted);
+			Music m = new Music(ID, format, interpreter, type, title, ean, genre, year, location, lendTo, lendDate, backDate, rating, description, comment, cover, isDeleted);
 			musicList.add(m);
 		}
 	}
@@ -154,7 +154,7 @@ public class DBSelector {
 			String format 	= rs.getString(14);
 			String director = rs.getString(15);
 			String actor 	= rs.getString(16);	
-			Video v = new Video(format, director, actor, title, ean, genre, year, location, lendTo, lendDate, backDate, rating, description, comment, cover, isDeleted);
+			Video v = new Video(ID, format, director, actor, title, ean, genre, year, location, lendTo, lendDate, backDate, rating, description, comment, cover, isDeleted);
 			videoList.add(v);
 		}
 	}
