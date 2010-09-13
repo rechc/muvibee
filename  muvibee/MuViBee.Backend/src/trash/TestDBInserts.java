@@ -7,6 +7,7 @@ import de.muvibee.media.Music;
 import de.muvibee.media.Video;
 
 public class TestDBInserts {
+
 	public static void main(String[] args) {
 		Book b = new Book("null", "null", "null", "null", "null", "null", 0, "null", "null", "null", "null", 0, "null", "null", null, false);
 		Music m = new Music("null", "null", "null", "null", "null", "null", 0, "null", "null", "null", "null", 0, "null", "null", null, false);
@@ -27,6 +28,6 @@ public class TestDBInserts {
 		v.setCover(bi3);
 		v.setBackDate("2010-10-10");
 		v.setLendDate("2010-10-10");
-		v.insertIntoDB();
+		v.insertIntoDB();	
 	}
 }
