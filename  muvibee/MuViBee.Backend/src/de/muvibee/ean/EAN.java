@@ -151,7 +151,7 @@ public class EAN {
 					}
 				}
 			}
-		}
+		} 
 		xmlStreamReader.close();
 		if (error == null) {
 			if (productGroup.equals("DVD") || productGroup.equals("Video")) {
