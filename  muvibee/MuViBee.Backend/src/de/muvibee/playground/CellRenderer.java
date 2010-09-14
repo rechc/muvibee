@@ -3,10 +3,11 @@ package de.muvibee.playground;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
-
 import javax.swing.BorderFactory;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
 import javax.swing.border.Border;
 
@@ -15,7 +16,7 @@ public class CellRenderer extends JLabel implements ListCellRenderer {
 
 	
 	protected static enum rendererType {SIMPLE_LIST, ICON_LIST, DETAIL_ICON_LIST, TREE_VIEW};
-	
+		
 	
 	public CellRenderer(rendererType type) {
 		
@@ -37,11 +38,13 @@ public class CellRenderer extends JLabel implements ListCellRenderer {
 			break;
 		
 		case DETAIL_ICON_LIST :
+			setOpaque(true);
+			final Color HIGHLIGHT_COLOR = new Color(200, 0, 225);
+			final Border selectedBorder = BorderFactory.createLineBorder(HIGHLIGHT_COLOR, 2);
+			final Border normalBorder = BorderFactory.createEmptyBorder();
+//			this.
 			break;
-		
-		
-			
-		
+				
 		}
 		
 	}
@@ -54,6 +57,7 @@ public class CellRenderer extends JLabel implements ListCellRenderer {
 	        boolean cellHasFocus) 
 	{
 		
+		// Simple Icon List
 		if (value instanceof IconEntry) {
 			IconEntry entry = (IconEntry) value;
 	    	if (!(IconListSimple.itemCounter == 0) && (entry != null)) {
@@ -61,12 +65,27 @@ public class CellRenderer extends JLabel implements ListCellRenderer {
 	    	}
 		}
 		
+		// Simple List
 		if (value instanceof Entry) {
 			Entry entry = (Entry) value;
 	    	if (entry != null) {
 	    		setText(entry.getTitle() + " | " + entry.getAuthor());
 	    		setFont(list.getFont().deriveFont(Font.BOLD, 14));
 	    	}
+		}
+		
+		// Detailed Icon List
+		if (value instanceof ListEntry) {
+			Component le = (ListEntry) value;
+	    	le = (JComponent) value;
+	    	
+//	    	if(isSelected) 
+//	    		le.setBorder(selectedBorder);
+//			else 
+//				le.setBorder(normalBorder);
+//		    
+//		    return le;
+
 		}
 		
         if (isSelected) {
