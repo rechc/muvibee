@@ -3,12 +3,15 @@ package de.muvibee.playground;
 import java.awt.BorderLayout;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.Observable;
+import java.util.Observer;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class ListGUI extends JFrame {
+public class ListGUI extends JFrame implements Observer {
 		
 	JPanel content = new JPanel(new BorderLayout());
 	ListComboBox lcb = new ListComboBox();
@@ -56,6 +59,12 @@ public class ListGUI extends JFrame {
 		sl.pack();
 		sl.setLocationRelativeTo(null);
 		sl.setVisible(true);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

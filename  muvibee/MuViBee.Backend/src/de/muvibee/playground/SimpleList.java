@@ -4,11 +4,14 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import de.muvibee.media.*;
 
 
 @SuppressWarnings("serial")
@@ -16,6 +19,8 @@ public class SimpleList extends JPanel {
 
 	static JList list;
 	static DefaultListModel dlm;
+	
+	
 	
 	public SimpleList() {
 		super();
@@ -47,14 +52,37 @@ public class SimpleList extends JPanel {
 	}
 	
 	public void addItem(String title, String author) {
-		int index = list.getSelectedIndex(); //get selected index
-	    if (index == -1) { //no selection, so insert at beginning
-	        index = 0;
-	    } else {           //add after the selected item
-	        index++;
-	    }
+//		int index = list.getSelectedIndex(); //get selected index
+//	    if (index == -1) { //no selection, so insert at beginning
+//	        index = 0;
+//	    } else {           //add after the selected item
+//	        index++;
+//	    }
 	    Entry book = new Entry(title, author);	    
-		dlm.insertElementAt(book, index);
-		list.ensureIndexIsVisible(index);
-	}	
+//		dlm.insertElementAt(book, index);
+		dlm.addElement(book);
+		list.ensureIndexIsVisible(dlm.indexOf(this));
+	}
+	
+	public void addList(LinkedList lList) {
+		
+	}
+	
+	public void addMedia(Media med) {
+		if (med instanceof Book)
+			addBook((Book) med);
+		if (med instanceof Video)
+			addVideo((Video) med);
+		if (med instanceof Music)
+			addMusic((Music) med);
+	}
+	
+	private void addBook(Book b) {
+	}
+	
+	private void addVideo(Video v) {
+	}
+	
+	private void addMusic(Music m) {
+	}
 }
