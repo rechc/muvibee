@@ -17,9 +17,9 @@ public class TestDBInserts {
 
 	public static void main(String[] args) {
 		
-		Book b = new Book("null", "null", "null", "einBuch23", "null", "null", 0, "null", "null", "null", "null", 0, "null", "null", null, false);
-		Music m = new Music("null", "null", "null", "ichMusik23", "null", "null", 0, "null", "null", "null", "null", 0, "null", "null", null, false);
-		Video v = new Video("null", "null", "null", "DuVideo23", "null", "null", 0, "null", "null", "null", "null", 0, "null", "null", null, false);
+		Book b = new Book(-1, "null", "null", "null", "einBuch23", "null", "null", 0, "null", "null", "null", "null", 0, "null", "null", null, false);
+		Music m = new Music(-1, "null", "null", "null", "ichMusik23", "null", "null", 0, "null", "null", "null", "null", 0, "null", "null", null, false);
+		Video v = new Video(-1, "null", "null", "null", "DuVideo23", "null", "null", 0, "null", "null", "null", "null", 0, "null", "null", null, false);
 		BufferedImage bi1 = new BufferedImage(1, 2, 3);
 		BufferedImage bi2 = new BufferedImage(4, 5, 6);
 		BufferedImage bi3 = new BufferedImage(7, 8, 9);
