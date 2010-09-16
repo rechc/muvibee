@@ -155,18 +155,18 @@ public class EAN {
 		xmlStreamReader.close();
 		if (error == null) {
 			if (productGroup.equals("DVD") || productGroup.equals("Video")) {
-				Video v = new Video("format", "director", "actor", title, ean, "genre", 2010, "location", "lendTo", "1999-01-01", "1999-05-05", 5, 
+				Video v = new Video(-1, "format", "director", "actor", title, ean, "genre", 2010, "location", "lendTo", "1999-01-01", "1999-05-05", 5, 
 						"description", "comment", cover, false);
 				v.insertIntoDB();
 				System.out.println(bundle.getString("EAN_FOUND"));
 			} else if (productGroup.equals("Music")) {
-				Music m = new Music("format", "interpreter", "type", title, ean, "genre", 1996, "location", "lendTo", "2000-02-02", "2001-01-01", 3, 
+				Music m = new Music(-1, "format", "interpreter", "type", title, ean, "genre", 1996, "location", "lendTo", "2000-02-02", "2001-01-01", 3, 
 						"description", "comment", cover, false);
 				m.insertIntoDB();
 				System.out.println(bundle.getString("EAN_FOUND"));
 			} else if (productGroup.equals("Book")) {
 				//Buch muss mit Konstruktor aufgerufen werden
-				Book b = new Book(author, language, isbn, title, ean, "genre", 1999, "location", "lendTo", "2010-10-10", "2010-11-11", 12, 
+				Book b = new Book(-1, author, language, isbn, title, ean, "genre", 1999, "location", "lendTo", "2010-10-10", "2010-11-11", 12, 
 						"description", "comment", cover, false);
 				// Diese Klasse muss Buch/Musik/Video Objekt zurueckgeben
 				b.insertIntoDB();
