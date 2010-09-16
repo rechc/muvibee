@@ -13,7 +13,6 @@ import javax.imageio.ImageIO;
 
 import de.muvibee.database.DBConnector;
 import de.muvibee.media.Book;
-import de.muvibee.media.Media;
 import de.muvibee.media.Music;
 import de.muvibee.media.Video;
 
