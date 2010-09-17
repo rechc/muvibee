@@ -13,7 +13,7 @@ public class TestDBSelects {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		DBSelector dbs = new DBSelector(false);
+		DBSelector dbs = new DBSelector(false, null);
 		LinkedList<Book> bookList;
 		LinkedList<Music> musicList;
 		LinkedList<Video> videoList;
