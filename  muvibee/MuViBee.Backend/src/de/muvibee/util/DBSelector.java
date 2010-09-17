@@ -15,6 +15,7 @@ import de.muvibee.database.DBConnector;
 import de.muvibee.media.Book;
 import de.muvibee.media.Music;
 import de.muvibee.media.Video;
+import de.muvibee.playground.cr.Compare;
 
 /**
  * @author tobiaslana
@@ -26,7 +27,8 @@ import de.muvibee.media.Video;
  * 
  * 
  * Aufruf:
- * DBSelector dbs = new DBSelector([false|true]);
+ * DBSelector dbs = new DBSelector([false|true], String orderBy);
+ * orderBy im Format "ORDER BY title, author, ID"
  * LinkedList<Book> bookList;
  * LinkedList<Music> musicList;
  * LinkedList<Video> videoList;
@@ -40,9 +42,10 @@ import de.muvibee.media.Video;
  */
 
 public class DBSelector {
-	private final static String SQL_GET_BOOKS  	= "SELECT * FROM books WHERE isdeleted = ?";
-	private final static String SQL_GET_MUSIC  	= "SELECT * FROM music WHERE isdeleted = ?";
-	private final static String SQL_GET_VIDEOS  = "SELECT * FROM video WHERE isdeleted = ?";
+	private final static String SQL_GET_BOOKS  	= "SELECT * FROM books WHERE isdeleted = ? ";
+	private final static String SQL_GET_MUSIC  	= "SELECT * FROM music WHERE isdeleted = ? ";
+	private final static String SQL_GET_VIDEOS  = "SELECT * FROM video WHERE isdeleted = ? ";
+	private final static String SQL_ORDER_BY	= " ORDER BY title";
 
 	private static Connection con = null;
 	
@@ -50,19 +53,22 @@ public class DBSelector {
 	private static LinkedList<Music> musicList;
 	private static LinkedList<Video> videoList;
 	
-	public DBSelector(Boolean deleted) {
-		selectMedia(deleted);
+	public DBSelector(Boolean deleted, String orderBy) {
+		selectMedia(deleted, orderBy);
 	}
 	
-	public void selectMedia(Boolean isDeleted) {
+	public void selectMedia(Boolean isDeleted, String orderBy) {
 		try {
+			if (orderBy == null || orderBy.compareTo("") == 0 || orderBy.compareTo(" ") == 0 || orderBy.compareTo("none") == 0) {
+				orderBy = SQL_ORDER_BY;
+			}
 			con = DBConnector.getConnection();
 			PreparedStatement psBook = null;
 			PreparedStatement psMusic = null;
 			PreparedStatement psVideo = null;
-			psBook 	= con.prepareStatement(SQL_GET_BOOKS);
-			psMusic = con.prepareStatement(SQL_GET_MUSIC);
-			psVideo = con.prepareStatement(SQL_GET_VIDEOS);
+			psBook 	= con.prepareStatement(SQL_GET_BOOKS + orderBy);
+			psMusic = con.prepareStatement(SQL_GET_MUSIC + orderBy);
+			psVideo = con.prepareStatement(SQL_GET_VIDEOS + orderBy);
 			psBook.setBoolean(1, isDeleted);
 			psMusic.setBoolean(1, isDeleted);
 			psVideo.setBoolean(1, isDeleted);
